@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'org.yourproject'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    implementation project(':paper')
+    implementation project(':forge')
+
+    // PaperMC and Forge dependencies
+    compileOnly 'com.destroystokyo.paper:paper-api:1.20-R0.1-SNAPSHOT'
+    compileOnly 'net.minecraftforge:forge:1.20.1-38.0.0'
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    archiveVersion.set('')
+    mergeServiceFiles()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}

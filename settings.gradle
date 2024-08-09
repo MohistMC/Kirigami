@@ -1,0 +1,3 @@
+rootProject.name = 'Kirigami'
+include 'paper'
+include 'forge'
